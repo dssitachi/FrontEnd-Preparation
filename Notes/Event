@@ -1,0 +1,16 @@
+Bubbling & Capturing are ways of event propagation in HTML DOM API.
+
+Any event in the W3C event model is first captured until it reaches the target element and then bubbles up again.
+
+Locate where the event is trigerred.
+Start from its ancestor, go down to the element where the event is triggered, if the "same event listener is attached",
+check the capture flag, if true -> execute, else go down to its successor, ( here repeat the same check with capture flag)
+continue same till we reach the target element. Execute the target event handler, then bubble up to the root and check 
+on same event handler, if capture flag is false. If false -> execute the handler.
+
+We can use stopPropagation() method to stop the flow.
+
+All event don't bubble up. eg -> hover, blur
+
+Event Delegation -> Instead of attaching event listener to child element separately, we attach a single event listener
+to the parent, and bubble up the event from the child. It helps us saving the memory.
