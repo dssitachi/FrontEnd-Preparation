@@ -50,3 +50,32 @@ int ninjaTraining(int n, vector<vector<int>> &points)
     for(int i = 0; i < 3; i++) res = max(res, dp[0][i]);
     return res;
 }
+
+
+/*
+    Unique Paths 2 : With obstacles
+*/
+
+int uniquePathsWithObstacles(vector<vector<int>>& gd) {
+    int rows = gd.size();
+    int cols = gd[0].size();
+    
+    vector<vector<int>> dp(rows, vector<int>(cols, 0));
+    
+    for(int col = 0; col < cols; col++) {
+        if(gd[0][col]) break;
+        dp[0][col] = 1;
+    }
+    for(int row = 0; row < rows; row++) {
+        if(gd[row][0]) break;
+        dp[row][0] = 1;
+    }
+
+    for(int i = 1; i < rows; i++) {
+        for(int j = 1; j < cols; j++) {
+            if(gd[i][j]) continue;
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+        }
+    }
+    return dp[rows - 1][cols - 1];
+}
